@@ -13,20 +13,17 @@ function clock(el, opts) {
     }
 
     // bootstrap the container element
-    var hours = "<div name='clock.hours'></div>";
-    var minutes = "<div name='clock.minutes'></div>";
-    el.innerHTML = minutes + " : " + seconds;
+    var hours = "<span name='clock.hours'></span>";
+    var minutes = "<span name='clock.minutes'></span>";
+    el.innerHTML = hours + " : " + minutes;
 
     function tick() {
         var d = new Date();
-        for(var i = 0, l = el.childNodes.length; i < l; i++) {
-            var child = el.childNodes[i];
-            switch(child) {
-                case "clock.hours":
-                    child.innerHTML = d.getHours();
-                    break;
-            }
-        }
+        var hours = el.firstChild;
+        var minutes = el.lastChild;
+
+        hours.innerHTML = d.getHours();
+        minutes.innerHTML = d.getMinutes();
     }
 
     window.setInterval(tick, options['tickInterval']);
